@@ -1,0 +1,53 @@
+{% extends 'base.html' %} {% load staticfiles %} {% block content %}
+
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" w3-include-html="content.html">Create an announce</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Add Announce</h3>
+          </div>
+          <div class="panel-body">
+            <form enctype="multipart/form-data" action="post_position/" method="post">
+              {% csrf_token %}
+              {{ form }}
+              <input type="submit" value="Submit" />
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  {% for position in positions %}
+  <div class="col-md-4">
+    <a href="/{{announce.id}}/">
+      <div class="announce panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title">{{ position.name }}</h2>
+        </div>
+      </div>
+    {% if forloop.counter|divisibleby:3 %}
+    </div>
+  <div class="row">
+    {% endif %}
+    </a>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
