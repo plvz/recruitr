@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% load staticfiles %} {% block content %}
+Matching {{applicant.name}}
+<div class="panel-body">
+  <div class="field-wrapper">
+<p>
+{{applicant.name}} has been added to the  {{ position.title }} position !
+</p>
+<p>
+Match {{applicant.name}} with a recruiter for the skills
+{% for skill in position.position_skills.all %}
+  #{{ skill }}
+{% endfor %}
+</p>
+
+  </div>
+Suggested recruiters with the matching skills order by seniority :
+
+
+<ul>
+  {% for employee in employees %}
+    <li>    {{ employee.name }} {{ employee.seniority }} ans
+
+      {% for skill in employee.employee_skills.all %}
+        #{{ skill }}
+      {% endfor %}
+    </li>
+  {% endfor %}
+</ul>
+</div>
+{% endblock %}

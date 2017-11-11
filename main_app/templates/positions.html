@@ -10,36 +10,36 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">Position form</h4>
       </div>
       <div class="modal-body">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Add Announce</h3>
-          </div>
-          <div class="panel-body">
+        <div class="panel-body">
             <form enctype="multipart/form-data" action="post_position/" method="post">
               {% csrf_token %}
-              {{ form }}
+              {{ form.as_p}}
               <input type="submit" value="Submit" />
             </form>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
 
 <div class="row">
   {% for position in positions %}
   <div class="col-md-4">
-    <a href="/{{announce.id}}/">
+    <a href="/{{position.position_id}}/">
       <div class="announce panel panel-default">
         <div class="panel-heading">
-          <h2 class="panel-title">{{ position.name }}</h2>
+          <h2 class="panel-title">{{ position.title }} </h2>
+          {% for skill in position.position_skills.all %}
+            #{{ skill }}
+          {% endfor %}
+          {{ position.number_position }}
         </div>
       </div>
     {% if forloop.counter|divisibleby:3 %}
