@@ -36,3 +36,10 @@ class Applicant(models.Model):
     linkedin = models.CharField(max_length=100)
     apllicant_skills = models.ManyToManyField(Skill)
     applicant_positions = models.ManyToManyField(Position)
+
+class Event(models.Model):
+    date = models.DateField()
+    schedule = models.TimeField()
+    duration = models.DecimalField(max_digits=2, decimal_places=0)
+    target_email = models.EmailField()
+    target_email1 = models.EmailField()

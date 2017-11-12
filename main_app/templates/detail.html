@@ -24,7 +24,7 @@
   </div>
   {% for applicant in applicants %}
   <p>
-    <a href="/applicant/{{applicant.id}}/">{{ applicant.name }} <a>
+  {{ applicant.name }}
 
 
       {% for skill in applicant.apllicant_skills.all %}

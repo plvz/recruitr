@@ -56,21 +56,25 @@ HR representatives should be able to:
     - Heroku or else (if you need a paid tier, ask us to create one for you and to invite you in)
   - Smart decisions, don't reinvent the wheel
 
-## Wireframes
+## Instructions
 
-- - - -
+You need to install django to run this server so install it with pip :
+sudo apt-get install python-pip python-dev build-essential  or sudo brew install python
+sudo pip install django
 
-_Quick links:_
-- Google Calendar API quickstart: [Ruby Quickstart  |  Google Calendar API](https://developers.google.com/google-apps/calendar/quickstart/ruby)
-- Create an event: [Create Events  |  Google Calendar API](https://developers.google.com/google-apps/calendar/create-events)
-- Datetime picker example: [GitHub - xdan/datetimepicker: jQuery Plugin Date and Time Picker](https://github.com/xdan/datetimepicker)
-- Datetime picker example: [GitHub - https://developer.calendly.com/](https://developer.calendly.com/)
+copy your Goolge calendar API key file in JSON format in the root's project then set up the environement variables for email and calendar features :
+export SERVICE_ACCOUNT_EMAIL="your_email@gmail.com"
+export CLIENT_SECRET_FILE="your_google_API_key.json"
+export HOST="smtp.gmail.com"
+export PASSWORD="your password"
 
+Enaable your gmail account to be use by a less secure app, sorry ... :
+https://myaccount.google.com/lesssecureapps?pli=1
 
-## Wireframes
+before to run the server for your fisrt time you should feed the database so load data from a json fil suck as
+python manage.py makemigrations
+python manage.py migrate
+python manage.py loaddata file.json
 
-![](All_Positions.png)
-***
-![](New_Applicant.png)
-***
-![](Match.png)
+Finally you can run your server:
+python manage.py runserver

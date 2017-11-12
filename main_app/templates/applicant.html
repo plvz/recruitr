@@ -16,15 +16,58 @@ Match {{applicant.name}} with a recruiter for the skills
 Suggested recruiters with the matching skills order by seniority :
 
 
-<ul>
-  {% for employee in employees %}
-    <li>    {{ employee.name }} {{ employee.seniority }} ans
 
-      {% for skill in employee.employee_skills.all %}
-        #{{ skill }}
+
+
+</form>
+<script>
+
+$( function() {
+  $('#id_schedule').timepicker({
+    minuteStep: 1,
+    template: 'modal',
+    appendWidgetTo: 'body',
+    showSeconds: true,
+    showMeridian: false,
+    defaultTime: false
+});
+  $( "#id_date" ).datepicker();
+} );
+</script>
+
+<div class="modal-body">
+  <form enctype="multipart/form-data" action="/post_event/" method="post">
+    {% csrf_token %}
+
+    <div class="field-wrapper">
+      <p>
+        <label for="id_date">Date:</label>
+        <p>Date: <input type="text" name="date" id="id_date"></p>
+      </p>
+      <p>
+        <label for="id_duration">Duration (min):</label>
+        <input name="duration" required="" id="id_duration" type="number">
+      </p>
+      <div class="input-group bootstrap-timepicker timepicker">
+         <label for="id_schedule">Schedule :</label>
+          <input id="id_schedule" name="schedule" type="text" class="form-control input-small">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+      </div>
+
+      {% for employee in employees %}
+      <p>
+          <input type="radio" name="target_email" id='id_target_email' value={{ employee.email }}> {{ employee.name }} has {{ employee.seniority }} years of seniority  skills :
+
+          {% for skill in employee.employee_skills.all %}
+            #{{ skill }}
+          {% endfor %}
+      </p>
       {% endfor %}
-    </li>
-  {% endfor %}
-</ul>
+
+      <input type="hidden" name="target_email1" id='target_email1' value={{ applicant.email }}>
+    </div>
+    <input type="submit" value="Submit" />
+  </form>
+</div>
 </div>
 {% endblock %}

@@ -1,0 +1,4 @@
+export SERVICE_ACCOUNT_EMAIL="gpellevoizin37@gmail.com"
+export CLIENT_SECRET_FILE="client_secret.json"
+export HOST="smtp.gmail.com"
+export PASSWORD="la-loire37"

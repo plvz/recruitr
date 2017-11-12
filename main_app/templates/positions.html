@@ -31,23 +31,23 @@
 
 <div class="row">
   {% for position in positions %}
-  <div class="col-md-4">
-    <a href="/{{position.position_id}}/">
+  <div class="col-md-12">
       <div class="announce panel panel-default">
         <div class="panel-heading">
-          <h2 class="panel-title">{{ position.title }} </h2>
+          <h2 class="panel-title">
+            <a href="/{{position.position_id}}/">
+
+            {{ position.title }}
+          </a>
           {% for skill in position.position_skills.all %}
             #{{ skill }}
           {% endfor %}
-          {{ position.number_position }}
+          {{ position.number_position }} positions
+          </h2>
         </div>
       </div>
-    {% if forloop.counter|divisibleby:3 %}
     </div>
-  <div class="row">
-    {% endif %}
-    </a>
-  </div>
+
   {% endfor %}
 </div>
 {% endblock %}

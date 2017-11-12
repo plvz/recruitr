@@ -1,5 +1,5 @@
 from django import forms
-from .models import Position, Employee, Applicant
+from .models import Position, Employee, Applicant, Event
 # Create your models here.
 
 class PositionForm(forms.ModelForm):
@@ -21,3 +21,8 @@ class ApplicantForm(forms.ModelForm):
     class Meta:
         model = Applicant
         fields = ['name', 'last_name', 'email', 'angel_url', 'linkedin','apllicant_skills']
+
+class EventForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ['date', 'schedule', 'duration', 'target_email', 'target_email1']
